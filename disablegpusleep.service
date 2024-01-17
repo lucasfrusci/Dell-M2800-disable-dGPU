@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable discrete GPU on suspend.
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 3
+ExecStart=/bin/bash /usr/src/acpi_call-1.1.0/examples/dell-dgpu-off.sh
+
+[Install]
+WantedBy=sleep.target hibernate.target hybrid-sleep.target
