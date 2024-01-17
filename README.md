@@ -13,6 +13,7 @@ Copia dos arquivos das pastas "modprobe.d" e "tmpfiles.d" pra a pasta do mesmo n
 
 Exemplo:
 > sudo cp radeon.conf /etc/modprobe.d/
+
 > sudo cp acpi_call.conf removegpu.conf /etc/tmpfiles.d/
 
 Executa esse comando no Terminal:
