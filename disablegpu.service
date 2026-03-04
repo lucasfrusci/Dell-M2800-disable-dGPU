@@ -1,0 +1,9 @@
+[Unit]
+Description=Disabe Discrete GPU on Boot.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /usr/share/doc/acpi-call-dkms/examples/turn_off_gpu.sh
+
+[Install]
+WantedBy=multi-user.target

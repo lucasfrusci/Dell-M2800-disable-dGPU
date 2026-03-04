@@ -11,6 +11,9 @@ Instala o acpi-call-dkms do repositorio da sua Distro;
 
 Copia dos arquivos das pastas "modprobe.d" e "tmpfiles.d" pra a pasta do mesmo nome na sua distro dentro de /etc ou /usr;
 
+Ativa o modulo acpi_call iniciar junto com boot.
+>sudo echo acpi_call >> /etc/modules-load.d/modules.conf
+
 Exemplo:
 > sudo cp radeon.conf /etc/modprobe.d/
 
