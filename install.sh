@@ -16,6 +16,8 @@ handle_uninstall(){
     read -n 1 -p "Confirmation Press 'Y' for Yes or 'N' for No: " choice
     echo ""
     if [[ "$choice" != "Y" && "$choice" != "y" ]]; then
+        echo "Canceled"
+        echo "Exiting"
         exit 0
     fi
 
@@ -135,7 +137,7 @@ acpi_call(){
 }
 
 install(){
-    if [[ "$OS_NAME" == "debian" ]]; then
+    if [[ "$OS_NAME" == "debian" && "$OS_NAME" == "ubuntu" ]]; then
         log "System is Debian based, configuring for it"
         acpi_call "/usr/share/doc/acpi-call-dkms/"
         handle_services $OS_NAME
@@ -158,6 +160,14 @@ install(){
 }
 
 echo "initializing script..."
+
+
+if [[ "$OS_NAME" == "" ]]; then
+    #CALLBACK FOR OS DETECTION
+    echo "sem os buscando id"
+    grep -E "^ID=" /etc/os-release | cut -d'=' -f2 | tr -d '"' $OS_NAME
+    echo $OS_NAME
+fi
 
 if [[ "$EUID" -eq 0  ]]; then
     #IF ROOT IS PASSED BLANK VARIABLE, COMMAND DONT NEED SUDO MORE
