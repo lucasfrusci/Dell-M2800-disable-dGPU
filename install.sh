@@ -9,20 +9,18 @@ ISROOT=""
 log(){
     if $VERBOSE; then
         echo $1
-        echo ""
     fi
 }
 
 handle_uninstall(){
-    read -n 1 -p "Press 'Y' for Yes or 'N' for No: " choice
+    read -n 1 -p "Confirmation Press 'Y' for Yes or 'N' for No: " choice
     echo ""
     if [[ "$choice" != "Y" && "$choice" != "y" ]]; then
         exit 0
     fi
 
-    echo "You picked Yes!"
     log "Removing service from systemd"
-    $ISROOT systemctl disable --now disablegpu disablegpusleep
+    $ISROOT systemctl disable --now disablegpu disablegpusleep > /dev/null 2>&1
     $ISROOT rm "$SERVICESLOCAL/disablegpu.service" &> /dev/null
     $ISROOT rm "$SERVICESLOCAL/disablegpusleep.service" &> /dev/null
 
@@ -168,8 +166,6 @@ elif command -v sudo &> /dev/null; then
     ISROOT="sudo"
 fi
 
-echo $ISROOT
-
 if ls "$SERVICESLOCAL" &> /dev/null; then
     HAS_SYSTEMD=true
 else
@@ -178,8 +174,8 @@ else
 fi
 
 if [[ "$1" == "-v" || "$2" == "-v" ]]; then
-    echo "Verbose enabled"
     VERBOSE=true
+    log "Verbose enabled"
 fi
 
 if [[ "$1" == "-u" ]]; then
