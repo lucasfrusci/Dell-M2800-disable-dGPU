@@ -1,0 +1,9 @@
+[Unit]
+Description=Disabe Discrete GPU on Boot.
+
+[Service]
+Type=simple
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Disable discrete GPU on suspend.
+
+[Service]
+Type=simple
+ExecStartPre=/bin/sleep 3
+
+
+[Install]
+WantedBy=sleep.target hibernate.target hybrid-sleep.target
