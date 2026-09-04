@@ -186,5 +186,4 @@ fi
 
 echo "Installing"
 echo "For uninstall use -u"
-#install
-enable_acpi
+install
